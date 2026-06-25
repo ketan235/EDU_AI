@@ -276,7 +276,7 @@ function Dashboard({ user, onNav, apiKey }) {
   const activity = getActivityHistory();
   const docs = store.get("documents", []);
   const quizHistory = store.get("quiz_history", []);
-  const sessions = store.get("chat_sessions", []);
+
 
   const totalMins = activity.reduce((s, d) => s + d.studyMinutes, 0);
   const totalMsgs = activity.reduce((s, d) => s + d.messages, 0);
@@ -1385,7 +1385,7 @@ export default function App() {
   const [apiKey, setApiKey] = useState(() => store.get("eduai_apikey", ""));
   const [view, setView] = useState("dashboard");
 
-  useEffect(() => { if (user) logActivity("session_start"); }, []);
+  useEffect(() => { if (user) logActivity("session_start"); }, [user]);
 
   const updateUser = (u) => { setUser(u); store.set("eduai_user", u); };
   const updateApiKey = (k) => { setApiKey(k); store.set("eduai_apikey", k); };
